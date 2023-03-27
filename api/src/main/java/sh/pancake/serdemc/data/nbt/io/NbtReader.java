@@ -123,7 +123,7 @@ public class NbtReader {
         return value;
     }
 
-    private NbtTagValue<?> readTag(byte type) throws IOException {
+    public NbtTagValue<?> readTag(byte type) throws IOException {
         switch (type) {
             case NbtTagValue.TAG_BYTE: return NbtTagValue.fromByte(readByte());
 

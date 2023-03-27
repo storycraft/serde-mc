@@ -55,23 +55,20 @@ public class NbtWriter {
     }
 
     public <Item> void writeList(NbtTagList<Item> list) throws IOException {
-        byte type = list.getType();
-
-        writer.writeByte(type);
+        writer.writeByte(list.getType());
         writer.writeInt(list.size());
         for (NbtTagValue<?> tag : list) {
-            writeValue(type, tag.getValue());
+            writeTag(tag);
         }
     }
 
     public void writeCompound(Map<String, NbtTagValue<?>> compound) throws IOException {
         for (String name : compound.keySet()) {
             NbtTagValue<?> tag = compound.get(name);
-            byte type = tag.getType();
 
-            writer.writeByte(type);
+            writer.writeByte(tag.getType());
             writeString(name);
-            writeValue(type, tag.getValue());
+            writeTag(tag);
         }
         writer.writeByte(NbtTagValue.TAG_END);
     }
@@ -109,7 +106,10 @@ public class NbtWriter {
     }
 
     @SuppressWarnings("unchecked")
-    private void writeValue(byte type, Object value) throws IOException {
+    public void writeTag(NbtTagValue<?> tag) throws IOException {
+        byte type = tag.getType();
+        Object value = tag.getValue();
+
         switch (type) {
             case NbtTagValue.TAG_BYTE: {
                 writeByte((byte) value);
