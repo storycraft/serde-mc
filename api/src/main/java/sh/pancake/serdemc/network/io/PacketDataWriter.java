@@ -11,7 +11,6 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import lombok.AllArgsConstructor;
 import sh.pancake.serdemc.data.BlockPosition;
 import sh.pancake.serdemc.data.ItemStack;
 import sh.pancake.serdemc.data.metadata.MetadataValue;
@@ -20,9 +19,14 @@ import sh.pancake.serdemc.data.nbt.NbtRootCompound;
 import sh.pancake.serdemc.data.nbt.io.NbtWriter;
 import sh.pancake.serdemc.io.DataWriter;
 
-@AllArgsConstructor
 public class PacketDataWriter {
     private final DataWriter writer;
+    private final NbtWriter nbtWriter;
+
+    public PacketDataWriter(DataWriter writer) {
+        this.writer = writer;
+        this.nbtWriter = new NbtWriter(writer);
+    }
 
     public void writeByte(byte value) throws IOException {
         writer.writeByte(value);
@@ -131,7 +135,10 @@ public class PacketDataWriter {
     }
 
     public void writeNbt(NbtRootCompound compound) throws IOException {
-        new NbtWriter(writer).writeRootCompound(compound);
+        nbtWriter.writeRootCompound(compound);
+    }
+    public void readNbtOptional(@Nullable NbtRootCompound compound) throws IOException {
+        nbtWriter.writeRootCompoundOptional(compound);
     }
 
     @SuppressWarnings("unchecked")

@@ -10,6 +10,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 import lombok.AllArgsConstructor;
 import sh.pancake.serdemc.data.nbt.NbtRootCompound;
 import sh.pancake.serdemc.data.nbt.NbtTagList;
@@ -83,8 +85,17 @@ public class NbtReader {
         return compound;
     }
 
-    public NbtRootCompound readRootCompound() throws IOException {
+    public @Nullable NbtRootCompound readRootCompoundOptional() throws IOException {
         byte type = reader.readByte();
+        if (type == NbtTagValue.TAG_END) return null;
+
+        return readRootCompoundInner(type);
+    }
+    public NbtRootCompound readRootCompound() throws IOException {
+        return readRootCompoundInner(reader.readByte());
+    }
+
+    private NbtRootCompound readRootCompoundInner(byte type) throws IOException {
         if (type != NbtTagValue.TAG_COMPOUND) {
             throw new RuntimeException("Root is not TAG_Compound type");
         }

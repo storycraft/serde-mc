@@ -8,6 +8,8 @@ package sh.pancake.serdemc.data.nbt.io;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 import lombok.AllArgsConstructor;
 import sh.pancake.serdemc.data.nbt.NbtRootCompound;
 import sh.pancake.serdemc.data.nbt.NbtTagList;
@@ -74,6 +76,14 @@ public class NbtWriter {
         writer.writeByte(NbtTagValue.TAG_END);
     }
 
+    public void writeRootCompoundOptional(@Nullable NbtRootCompound compound) throws IOException {
+        if (compound == null) {
+            writeByte(NbtTagValue.TAG_END);
+            return;
+        }
+
+        writeRootCompound(compound);
+    }
     public void writeRootCompound(NbtRootCompound compound) throws IOException {
         writeByte(NbtTagValue.TAG_COMPOUND);
         writeString(compound.getName());

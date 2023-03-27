@@ -13,7 +13,6 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import lombok.AllArgsConstructor;
 import sh.pancake.serdemc.data.BlockPosition;
 import sh.pancake.serdemc.data.ItemStack;
 import sh.pancake.serdemc.data.metadata.MetadataValue;
@@ -22,9 +21,14 @@ import sh.pancake.serdemc.data.nbt.NbtRootCompound;
 import sh.pancake.serdemc.data.nbt.io.NbtReader;
 import sh.pancake.serdemc.io.DataReader;
 
-@AllArgsConstructor
 public class PacketDataReader {
     private final DataReader reader;
+    private final NbtReader nbtReader;
+
+    public PacketDataReader(DataReader reader) {
+        this.reader = reader;
+        this.nbtReader = new NbtReader(reader);
+    }
 
     public byte readByte() throws IOException {
         return reader.readByte();
@@ -150,7 +154,10 @@ public class PacketDataReader {
     }
 
     public NbtRootCompound readNbt() throws IOException {
-        return new NbtReader(reader).readRootCompound();
+        return nbtReader.readRootCompound();
+    }
+    public @Nullable NbtRootCompound readNbtOptional() throws IOException {
+        return nbtReader.readRootCompoundOptional();
     }
 
     public Map<Byte, MetadataValue> readEntityMetadata() throws IOException {
