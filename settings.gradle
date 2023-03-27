@@ -1,0 +1,8 @@
+/*
+ * Created on Sun Mar 26 2023
+ *
+ * Copyright (c) storycraft. Licensed under the Apache Licence 2.0.
+ */
+rootProject.name = 'serde-mc'
+
+include('api')
