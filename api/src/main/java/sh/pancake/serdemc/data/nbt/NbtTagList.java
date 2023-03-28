@@ -7,7 +7,6 @@ package sh.pancake.serdemc.data.nbt;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
-import java.util.List;
 
 import lombok.Getter;
 
@@ -15,7 +14,7 @@ public class NbtTagList<T> extends AbstractList<NbtTagValue<T>> {
     @Getter
     private final byte type;
 
-    private final List<NbtTagValue<T>> list;
+    private final ArrayList<NbtTagValue<T>> list;
 
     public NbtTagList(byte type) {
         this.type = type;
@@ -26,7 +25,7 @@ public class NbtTagList<T> extends AbstractList<NbtTagValue<T>> {
         this.type = type;
         this.list = new ArrayList<>(length);
     }
-    
+
     @Override
     public void add(int arg0, NbtTagValue<T> arg1) {
         list.add(arg0, arg1);
