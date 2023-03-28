@@ -13,11 +13,11 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
 import sh.pancake.serdemc.data.nbt.NbtRootCompound;
+import sh.pancake.serdemc.data.nbt.NbtTagCompound;
 import sh.pancake.serdemc.data.nbt.NbtTagValue;
 import sh.pancake.serdemc.data.nbt.io.NbtReader;
 import sh.pancake.serdemc.data.nbt.io.NbtWriter;
@@ -45,7 +45,7 @@ class TestNbt {
             original = stream.readAllBytes();
         }
 
-        NbtRootCompound root = new NbtRootCompound("hello world", new HashMap<>());
+        NbtRootCompound root = new NbtRootCompound("hello world", new NbtTagCompound());
         root.getCompound().put("name", NbtTagValue.fromString("Bananrama"));
 
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {

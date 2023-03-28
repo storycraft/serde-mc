@@ -5,8 +5,6 @@
  */
 package sh.pancake.serdemc.data.nbt;
 
-import java.util.Map;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -14,5 +12,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class NbtRootCompound {
     private final String name;
-    private final Map<String, NbtTagValue<?>> compound;
+    private final NbtTagCompound compound;
 }
