@@ -1,8 +1,7 @@
-package sh.pancake.serdemc.data.nbt;
+package sh.pancake.serdemc.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import sh.pancake.serdemc.data.BlockPosition;
 
 @Data
 @AllArgsConstructor

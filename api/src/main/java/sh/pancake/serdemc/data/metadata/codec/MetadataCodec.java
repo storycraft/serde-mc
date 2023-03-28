@@ -11,10 +11,10 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import sh.pancake.serdemc.data.BlockPosition;
+import sh.pancake.serdemc.data.GlobalBlockPosition;
 import sh.pancake.serdemc.data.ItemStack;
 import sh.pancake.serdemc.data.Quaternion;
 import sh.pancake.serdemc.data.Vector3;
-import sh.pancake.serdemc.data.nbt.GlobalBlockPosition;
 import sh.pancake.serdemc.data.nbt.NbtRootCompound;
 import sh.pancake.serdemc.data.particle.Particle;
 import sh.pancake.serdemc.data.particle.codec.ParticleDataCodec;
