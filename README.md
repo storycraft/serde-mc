@@ -1,8 +1,6 @@
 # SerdeMC
 Performant Minecraft network data serialization / deserialization library
 
-Implements packet, metadata, nbt, particle data structures, serialization and deserialization.
-
 Almost all protocol libraries are containing unnecessary dependencies(excluding utilities) such as bukkit, netty, etc. While it can enhances user experience in some cases, it is hard to manage, broke easily and have limited usage. This library does not have these dependencies, allowing user to do anything. Such as creating custom server, bukkit plugin, mod, proxy or any other external software requiring mcpc data structure.
 
 Every deserialization and serialization operations depend on `DataReader`, `DataWriter` interfaces. User only need to implements primitive(byte, short, int, long) io operations to support any operations between external source or destination. There are adapters for Java's `InputStream`, `OutputStream` and `ByteBuffer` by default.
