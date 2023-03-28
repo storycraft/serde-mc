@@ -5,7 +5,6 @@
  */
 package sh.pancake.serdemc.data.nbt;
 
-import java.util.Map;
 import java.util.Objects;
 
 public abstract class NbtTagValue<T> {
@@ -194,7 +193,7 @@ public abstract class NbtTagValue<T> {
         };
     }
 
-    public static NbtTagValue<Map<String, NbtTagValue<?>>> fromCompound(Map<String, NbtTagValue<?>> value) {
+    public static NbtTagValue<NbtTagCompound> fromCompound(NbtTagCompound value) {
         return new NbtTagValue<>() {
             @Override
             public byte getType() {
@@ -202,7 +201,7 @@ public abstract class NbtTagValue<T> {
             }
 
             @Override
-            public Map<String, NbtTagValue<?>> getValue() {
+            public NbtTagCompound getValue() {
                 return value;
             }
 

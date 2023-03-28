@@ -7,13 +7,12 @@ package sh.pancake.serdemc.data.nbt.io;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.annotation.Nullable;
 
 import lombok.AllArgsConstructor;
 import sh.pancake.serdemc.data.nbt.NbtRootCompound;
+import sh.pancake.serdemc.data.nbt.NbtTagCompound;
 import sh.pancake.serdemc.data.nbt.NbtTagList;
 import sh.pancake.serdemc.data.nbt.NbtTagValue;
 import sh.pancake.serdemc.io.DataReader;
@@ -75,8 +74,8 @@ public class NbtReader {
         return list;
     }
 
-    public Map<String, NbtTagValue<?>> readCompound() throws IOException {
-        Map<String, NbtTagValue<?>> compound = new HashMap<>();
+    public NbtTagCompound readCompound() throws IOException {
+        NbtTagCompound compound = new NbtTagCompound();
 
         for (byte type; (type = reader.readByte()) != NbtTagValue.TAG_END;) {
             compound.put(readString(), readTag(type));

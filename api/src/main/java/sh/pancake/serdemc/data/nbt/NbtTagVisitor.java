@@ -1,7 +1,5 @@
 package sh.pancake.serdemc.data.nbt;
 
-import java.util.Map;
-
 public interface NbtTagVisitor {
     void visitByte(byte value);
 
@@ -21,7 +19,7 @@ public interface NbtTagVisitor {
 
     void visitList(NbtTagList<?> value);
 
-    void visitCompound(Map<String, NbtTagValue<?>> value);
+    void visitCompound(NbtTagCompound value);
 
     void visitIntArray(int[] value);
 
